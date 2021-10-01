@@ -1,0 +1,88 @@
+:root {
+
+    --orange: #fe6a39;
+    --orange-light: #FF7A4C;
+    --orange-dark: #ff5b24;
+    --orange-background: rgba(255, 122, 76, 0.11);
+    --black: black;
+    --white: #FFFFFF;
+    --light-grey: #575656;
+}
+
+    /* FORMULAIRE */
+    /* Register */
+
+
+.fondcouleur{
+    background-color: var(--white);
+    box-shadow: 0px 5px 17px rgba(51, 51, 51, 0.25);
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+.fondblanc{
+    background-color: var(--orange-background);
+}
+.taille{
+    width: 70rem;
+}
+.omb_login .omb_authTitle {
+    text-align: center;
+	line-height: 300%;   
+}
+.fontco{
+    font-family: 'Playfair Display';  
+    font-size: 35px;
+}
+.colorsign{
+    color: var(--orange);
+}
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}			
+
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+.btn-block{
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}		
+}

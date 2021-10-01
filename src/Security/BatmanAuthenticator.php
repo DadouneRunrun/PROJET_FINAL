@@ -50,7 +50,7 @@ class BatmanAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-       return new RedirectResponse($this->urlGenerator->generate('home'));
+       return new RedirectResponse($this->urlGenerator->generate('account'));
     
     }
 

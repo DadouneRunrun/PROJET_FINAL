@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Goodies and Co{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Mon Panier</h1>
+    Retrouvez l'ensemble des produits que vous avez ajouté à votre panier.
+    {% if cart|length > 0 %}
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col"></th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set total = null %}
+            {% for product in cart %}
+            <tr>
+                <th>
+                    <img src="/Assets/ressources/img/uploads/products/{{ product.product.picture }}"
+                        alt="{{ product.product.name }}" height="75px"/><br>
+                </th>
+                <td>
+                    {{ product.product.name }}<br>
+                    <small>{{ product.product.description }}</small>
+                </td>
+                <td>
+                    <a href="{{ path('decrease_to_cart', {'id' : product.product.id}) }}" style="text-decoration: none !important;">
+                        <img src="{{ asset('Assets/ressources/img/uploads/icon/minus.png') }}" height="19px" alt="Retirer un produit"/>
+                    </a>
+
+                    {{ product.quantity }}
+
+                    <a href="{{ path('add_to_cart', {'id' : product.product.id}) }}">
+                        <img src="{{ asset('Assets/ressources/img/uploads/icon/more.png') }}" height="19px" alt="Ajouter un produit"/>
+                    </a>
+                </td>
+                <td>{{ (product.product.price / 100)|number_format(2, ',' , '.') }}€</td>
+                <td>{{ ((product.product.price * product.quantity) / 100)|number_format(2, ',' , '.') }}€</td>
+                <td>
+                    <a href="{{ path('delete_to_cart', {'id' : product.product.id}) }}">
+                        <img src="{{ asset('Assets/ressources/img/uploads/icon/delete.png') }}" height="19px" alt="">
+                    </a>
+                </td>
+            </tr>
+            {% set total = total + (product.product.price * product.quantity) %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-end mb-5 ">
+        <b>Nombre de produit :</b> {{ cart|length }} <br>
+        <b>Total de mon panier :</b> {{ ( total / 100)|number_format(2, ',' , '.') }}€ <br>
+        <a href="{{ path('purchase') }}" class="btn btn-info d-md-block mt-3">Valider mon panier</a>
+    </div>
+</div>
+{% else %}
+<hr>
+<p><b>Votre panier est vide.</b></p>
+{% endif %}
+
+{% endblock %}

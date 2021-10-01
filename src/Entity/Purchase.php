@@ -20,7 +20,7 @@ class Purchase
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $price;
 
@@ -39,6 +39,26 @@ class Purchase
      */
     private $purchaseDetails;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $carrierName;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $carrierPrice;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $delivery;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPaid;
+
     public function __construct()
     {
         $this->purchaseDetails = new ArrayCollection();
@@ -49,12 +69,12 @@ class Purchase
         return $this->id;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -111,6 +131,54 @@ class Purchase
                 $purchaseDetail->setPurchase(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCarrierName(): ?string
+    {
+        return $this->carrierName;
+    }
+
+    public function setCarrierName(string $carrierName): self
+    {
+        $this->carrierName = $carrierName;
+
+        return $this;
+    }
+
+    public function getCarrierPrice(): ?float
+    {
+        return $this->carrierPrice;
+    }
+
+    public function setCarrierPrice(float $carrierPrice): self
+    {
+        $this->carrierPrice = $carrierPrice;
+
+        return $this;
+    }
+
+    public function getDelivery(): ?string
+    {
+        return $this->delivery;
+    }
+
+    public function setDelivery(string $delivery): self
+    {
+        $this->delivery = $delivery;
+
+        return $this;
+    }
+
+    public function getIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }

@@ -1,48 +1,49 @@
-   <div class="container-fluid">
-            <div class="row bglog">
-                <div class="ml-auto mt-1 mr-4">
-                    <a class="nav-link acolor" href="/HTML/loginsignin.html" target="_blank">LOG IN / SIGN IN</a>
-                </div>
-                <nav class="d-flex navbar navbar-expand-lg navbar-light col-12">
-                    <a class="navbar-brand" href="index.html"><img src="../LOGO/LogoMadeTaina.svg"
-                            class="logo img-fluid" alt="Logo site internet"></a>
+    <header>
+        <nav class="d-flex navbar navbar-expand-lg navbar-light col-12">
+            <a class="navbar-brand" href="index.html"><img src="{{ asset("Assets/ressources/LOGO/LogoMadeTaina.svg") }}"
+                    class="logo img-fluid" alt="Logo site internet"></a>
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
 
-                    <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link fontnav" href="index.html">Accueil <span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fontnav" href="apropos.html">A propos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fontnav" href="portfolio.html">Portfolio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fontnav" href="messervices.html">Mes Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fontnav" href="../HTML/contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a class="btn btn-primary bouton bouton-hover" href="/HTML/e-shop.html" target="_blank"
-                        role="button">E-SHOP</a>
-                    </button>
-
-
-                    <div>
-                        <a href="/HTML/wishlist.html"><i class="far fa-heart heart"></i></a>
-                    </div>
-
-                    <div class="basket">
-                        <a href="/HTML/e-shop.html" class="basket"><i class="fi-rr-shopping-cart"></i></a>
-                    </div>
-                </nav>
+            <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href={{ path("home") }}>Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href={{ path("products") }}>Nos produit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href={{ path("home") }}>Qui sommes-nous ?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href={{ path("contact") }}>Contact</a>
+                    </li>
+                    {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href="{{ path ("account") }}">Mon compte <small>({{ app.user.firstName }})</small></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href="{{ path ("app_logout") }}"> Déconnexion</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href="{{ path ("app_login") }}">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fontnav" href="{{ path ("app_register") }}">Inscription</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="basket">
+                <a href="{{ path ('cart') }}" class="basket"><i class="fas fa-shopping-basket"></i></a>
+            </div>
+        </nav>
+        </div>
+        </div>
+    </header>

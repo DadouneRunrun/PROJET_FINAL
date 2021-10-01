@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement de ma commande - Goodies and Co{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h2>Mon Récapitulatif</h2>
+        <p>Vérifiez vos informations avant de procéder au paiement</p>
+        <hr>
+        <div class="col-md-6 form_color">
+            Mon adresse de livraison<br>
+
+            Mon transporteur
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>Récap de ma commande</b>
+                <p>Retrouvez le récapitulatif de vos produits</p>
+            </div>
+
+
+            <div class="purchase_summary">
+                {% for product in cart %}
+                <div class="row">
+
+                    <div class="col-3">
+                        <img src="/Assets/ressources/img/uploads/products/{{ product.product.picture }}"
+                            alt="{{ product.product.name }}" height="75px" /><br><br>
+                    </div>
+
+                    <div class="col-6 my-auto">
+                        {{ product.product.name }}<br>
+                        <small>{{ product.product.description }}
+                            <br>
+                            x {{ product.quantity }}
+                        </small>
+                    </div>
+
+                    <div class="col-2 my-auto">
+
+                    </div>
+
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="" class="btn btn-success d-md-block mt-3">Payer</a>
+    </div>
+</div>
+
+{% endblock %}

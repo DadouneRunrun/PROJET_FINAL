@@ -23,21 +23,25 @@ class PurchaseDetails
     private $quantity;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $price;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="purchaseDetails")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $product;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Purchase::class, inversedBy="purchaseDetails")
      * @ORM\JoinColumn(nullable=false)
      */
     private $purchase;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $total;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $product;
 
 
     public function getId(): ?int
@@ -57,29 +61,7 @@ class PurchaseDetails
         return $this;
     }
 
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getProduct(): ?Product
-    {
-        return $this->product;
-    }
-
-    public function setProduct(?Product $product): self
-    {
-        $this->product = $product;
-
-        return $this;
-    }
+   
 
     public function getPurchase(): ?Purchase
     {
@@ -89,6 +71,42 @@ class PurchaseDetails
     public function setPurchase(?Purchase $purchase): self
     {
         $this->purchase = $purchase;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getProduct(): ?string
+    {
+        return $this->product;
+    }
+
+    public function setProduct(string $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

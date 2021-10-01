@@ -122,7 +122,7 @@ body {
 
 /* PARAGRAPHE INTRODUCTION */
 
-h1 {
+h3 {
     font-family: "Playfair Display";
     font-style: normal;
     font-size: 32px;
@@ -337,7 +337,6 @@ h1 {
     align-items: center;
     width: auto;
     margin-bottom: 40px;
-    /* margin-top: 25px; */
 }
 
 .boutoncontourbis {
@@ -355,38 +354,4 @@ h1 {
     color: #fff;
     background-color: var(--orange-light);
     border-color: var(--orange-light);
-}
-
-
-/* FOOTER */
-
-.bgcolor {
-    background: var(--orange-background);
-    padding-top: 15px;
-}
-
-
-
-.infospratique {
-    font-family: 'Raleway-medium';
-    text-transform: uppercase;
-}
-
-.infos {
-    font-family: 'Raleway-light';
-    font-size: 16px;
-    padding-top: 4px;
-}
-
-.linkedinicon {
-    color: var(--orange);
-    font-size: 32px;
-    padding-right: 35px;
-}
-
-/* MENTIONS */
-
-.mentions {
-    font-family: 'Raleway-light';
-    font-size: 12px;
 }

@@ -11,8 +11,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -23,58 +25,64 @@ class RegistrationFormType extends AbstractType
 
             ->add('firstName',TextType::class, [
                 'label' => 'Prénom',
-                'attr' =>[
-                    'placeholder' => 'Entrez votre prénom'
-                ]
+                'required' => false
             ])
 
             ->add('lastName',TextType::class, [
                 'label' => 'Nom',
-                'attr' =>[
-                    'placeholder' => 'Entrez votre nom'
-                ]
+                'required' => false
             ]) 
 
             ->add('email',EmailType::class, [
                 'label' => 'Email',
-                'attr' =>[
-                    'placeholder' => 'Entrez votre email'
-                ]
+                'required' => false
             ]) 
 
             ->add('telephone',TextType::class, [
                 'label' => 'Téléphone',
-                'attr' =>[
-                    'placeholder' => 'Entrez votre numéro de téléphone'
-                ]
             ])
 
-            ->add('plainPassword', PasswordType::class, [
+            ->add('password', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'type' => PasswordType::class,
+                'invalid_message' => 'Le mot de passe et la confirmation doivent être identique.',
                 'mapped' => false,
+                'required' => true,
                 'label' => 'Mot de passe',
                 'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrer votre mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
+                
+                'first_options' =>[
+                    'label' => 'Mot de passe',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Vous devez entrer un mot de passe',
+                        ]),
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer votre mot de passe',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Vous devez entrer une confirmation de votre mot de passe',
+                        ]),
+                    ],
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'Veuillez accepter les conditions d\'utilisation',
+                'label' => 'Veuillez accepter les CGUV',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Acceptez vous les conditions',
                     ]),
                 ],
+            ])
+            ->add( 'submit', SubmitType::class, [
+                'label' => "S'inscrire",
+                'attr' => [
+
+                ]
             ])
         ;
     }

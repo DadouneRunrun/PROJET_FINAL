@@ -1,0 +1,22 @@
+:root {
+
+    --orange: #fe6a39;
+    --orange-light: #FF7A4C;
+    --orange-dark: #ff5b24;
+    --orange-background: rgba(255, 122, 76, 0.11);
+    --black: black;
+    --white: #FFFFFF;
+    --light-grey: #575656;
+}
+
+/* FOOTER */
+.footer-custom
+{
+    text-align: center;
+    background-color: var(--orange-background);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    margin-top: 150px;
+
+}

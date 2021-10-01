@@ -3,13 +3,16 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
+<div class="container">
 
 {{ form_start(form) }}
 
-<button type='submit'>Envoyer</button>
-
 {{ form_widget(form) }}
 
+<button type='submit'>Envoyer</button>
+
 {{ form_end(form) }}
+</div>
+
 
 {% endblock %}

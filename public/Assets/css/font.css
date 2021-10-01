@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('../FONT/Raleway/Raleway-VariableFont_wght.ttf'),
+    url('../FONT/Raleway/Raleway-Italic-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../FONT/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf'),
+    url('../FONT/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+

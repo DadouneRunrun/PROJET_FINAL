@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Goodies and Co{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
+<h1 class="singin text-center pt-5 pb-4">Inscription</h1>
 
-        <button type="submit" class="btn">S'inscrire</button>
-    {{ form_end(registrationForm) }}
+<div class="bgbackground policeform mx-auto my-5">
+
+    {{ form_start(form) }}
+     {{ form_row(form.firstName) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.password.first) }}
+    {{ form_row(form.password.second) }}
+    {{ form_end(form) }}
+    
+</div>
 {% endblock %}

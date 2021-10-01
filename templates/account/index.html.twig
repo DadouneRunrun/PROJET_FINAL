@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - Goodies and Co{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1>Mon compte </h1>
+    Bienvenue {{ app.user.firstName }} dans votre compte.<br>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
+    <hr>
+    <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br>
+    <a href="{{ path('account_address') }}">Gérer mes adresses</a><br>
+    
+    - Mes commandes<br>
+    <hr>
+</div>
+{% endblock %}

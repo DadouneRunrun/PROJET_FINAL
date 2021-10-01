@@ -2,93 +2,63 @@
 
 namespace App\Controller;
 
+use App\Classe\Search;
 use App\Entity\Product;
-use App\Form\ProductType;
-use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\SearchType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @Route("/product")
- */
 class ProductController extends AbstractController
 {
-    /**
-     * @Route("/", name="product_index", methods={"GET"})
-     */
-    public function index(ProductRepository $productRepository): Response
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
-        ]);
+        $this->entityManager = $entityManager;
     }
 
+
     /**
-     * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @Route("/nos-produits", name="products")
      */
-    public function new(Request $request): Response
+    public function index(Request $request)
     {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($product);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);    
         }
+        else
+       {
+        $products = $this->entityManager->getRepository(Product::class)->findAll();
+       } 
 
-        return $this->renderForm('product/new.html.twig', [
-            'product' => $product,
-            'form' => $form,
+        return $this->render('product/index.html.twig',[
+            'products' => $products,
+            'form' => $form->createView()
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
+     /**
+     * @Route("/produit/{slug}", name="product")
      */
-    public function show(Product $product): Response
+    public function show($slug)
     {
-        return $this->render('product/show.html.twig', [
-            'product' => $product,
-        ]);
-    }
+        $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
 
-    /**
-     * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Product $product): Response
-    {
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
+        if(!$product)
+        {
+            return $this->redirectToRoute('products');
         }
 
-        return $this->renderForm('product/edit.html.twig', [
-            'product' => $product,
-            'form' => $form,
+        return $this->render('product/show.html.twig',[
+            'product' => $product
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="product_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Product $product): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($product);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
     }
 }

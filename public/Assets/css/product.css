@@ -1,0 +1,59 @@
+:root {
+
+    --orange: #fe6a39;
+    --orange-light: #FF7A4C;
+    --orange-dark: #ff5b24;
+    --orange-background: rgba(255, 122, 76, 0.11);
+    --black: black;
+    --white: #FFFFFF;
+    --light-grey: #575656;
+}
+
+.product-item h5
+{
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: "Raleway-semibold";
+    color: var(--orange);
+    margin-top: 6px;
+    margin-bottom: 1px;
+}
+
+.product-item .product-description
+{
+    font-family: "Raleway-light";
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.product-item .product-price
+{
+    font-family: "Raleway-semibold";
+    font-size: 15px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.product-item
+{
+    margin-top: 50px;
+}
+
+.product-single-item h3
+{
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: "Raleway-semibold";
+    color: var(--orange);
+}
+
+.product-single-item p
+{
+    font-family: "Raleway-light";
+    font-size: 16px;
+}
+.product-single-price
+{
+    font-family: "Raleway-semibold";
+    font-size: 19px;
+}
